@@ -3,6 +3,7 @@
 # 	--input videos/car_chase_01.mp4
 
 # import the necessary packages
+import imutils
 from openvino.inference_engine import IENetwork
 from openvino.inference_engine import IEPlugin
 from intel.yoloparams import TinyYOLOV3Params
@@ -12,10 +13,10 @@ from pyimagesearch.utils import Conf
 from imutils.video import FPS
 import numpy as np
 import argparse
-import imutils
 import time
 import cv2
 import os
+import subprocess
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -175,3 +176,5 @@ print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
 # stop the video stream and close any open windows1
 vs.stop() if args["input"] is None else vs.release()
 cv2.destroyAllWindows()
+
+

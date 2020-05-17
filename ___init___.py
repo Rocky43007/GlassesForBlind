@@ -1,2 +1,0 @@
-import detect_realtime_tinyyolo_ncs
-from DistanceScanner import 
