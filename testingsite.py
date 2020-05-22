@@ -232,4 +232,7 @@ print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
 vs.stop() if args["input"] is None else vs.release()
 cv2.destroyAllWindows()
 
+#Now To combine Data
+
+
 
