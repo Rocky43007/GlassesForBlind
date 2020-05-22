@@ -1,8 +1,11 @@
 {
 	"folders": [
 		{
+			"name": "GlassesForBlind",
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.pythonPath": "/usr/bin/python3"
+	}
 }
