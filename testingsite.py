@@ -233,6 +233,7 @@ vs.stop() if args["input"] is None else vs.release()
 cv2.destroyAllWindows()
 
 #Now To combine Data
+print(dist + "[INFO] elapsed time: {:.2f}".format(fps.elapsed())
 
 
 
