@@ -1,7 +1,8 @@
-from subprocess import check_call, CalledProcessError
-import os
+import SensorData
+import __Installer__
 
-    def pipinstall():
+def Installstart():
+      def pipinstall():
         try:
             check_call(['sudo','apt-get', 'install', '-y', 'python3-pip'], stdout=open(os.devnull,'wb'))
         except CalledProcessError as e:
@@ -18,4 +19,6 @@ import os
 # Example
     if __name__ == '__main__':
         pipinstall()
-        install('numpy')
+        install('numpy')    
+
+def 
