@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from subprocess import check_call, CalledProcessError
 import os
 
@@ -7,6 +8,8 @@ def pipinstall():
     except CalledProcessError as e:
         print(e.output)
 
+=======
+>>>>>>> 0ef8fb72fdb40d41ebb43b5959da29e73f277391
 import pip
 
 def install(package):
@@ -17,5 +20,8 @@ def install(package):
 
 # Example
 if __name__ == '__main__':
+<<<<<<< HEAD
     pipinstall()
+=======
+>>>>>>> 0ef8fb72fdb40d41ebb43b5959da29e73f277391
     install('numpy')
