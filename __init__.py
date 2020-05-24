@@ -1,4 +1,4 @@
-import SensorData
+import SensorData as sd
 import __Installer__
 
 def Installstart():
@@ -21,4 +21,8 @@ def Installstart():
         pipinstall()
         install('numpy')    
 
-def 
+def Data():
+    sd.ImageRec()
+    sd.ultrasonic()
+
+
