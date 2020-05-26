@@ -1,3 +1,5 @@
+#By Adrian at PyImageSearch
+
 # USAGE
 # python detect_realtime_tinyyolo_ncs.py --conf config/config.json \
 # 	--input videos/car_chase_01.mp4
