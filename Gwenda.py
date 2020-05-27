@@ -1,6 +1,6 @@
 #Made by Arnab Chakraborty 2019
 #Taken from Voice Assistant For Linux
-#See Github for more information - 
+#See Github for more information - https://github.com/Rocky43007/Voice-Assistant-For-Linux
 from gtts import gTTS
 import speech_recognition as sr
 import os
