@@ -11,6 +11,12 @@ def pipinstall():
     except CalledProcessError as e:
        print(e.output)
 
+def TesseractInstall():
+    try:
+        check_call(['sudo','apt-get', 'install', '-y', 'tesseract-ocr'], stdout=open(os.devnull,'wb'))
+    except CalledProcessError as e:
+        print(e.output)
+
 import pip
 
 def install(package):
@@ -22,4 +28,5 @@ def install(package):
 # Example
 if __name__ == '__main__':
     pipinstall()
+    TesseractInstall()
     install('numpy')

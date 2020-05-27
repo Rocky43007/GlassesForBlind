@@ -1,6 +1,7 @@
 import pip
-import __Installer__
-from GlassesForBlind import SensorData as sd
+import __Installer__.py
+import SensorData.py as sd
+import OCRRecog.py
 
 
 def pipinstall():
@@ -27,7 +28,6 @@ if __name__ == '__main__':
     TesseractInstall()
     install('numpy')    
 
-#def Data():
-#    sd.ImageRec()
-#    sd.ultrasonic()
-
+def Data():
+    sd.ImageRec()
+    sd.ultrasonic()

@@ -16,8 +16,8 @@ def ultrasonic():
 	GPIO.setup(GPIO_ECHO, GPIO.IN)
  
 	def distance():
-    	# set Trigger to HIGH
-    	GPIO.output(GPIO_TRIGGER, True)
+		# set Trigger to HIGH
+		GPIO.output(GPIO_TRIGGER, True)
  
     	# set Trigger after 0.01ms to LOW
     	time.sleep(0.00001)
@@ -42,17 +42,16 @@ def ultrasonic():
  
     	return distance
  
-	if __name__ == '__main__':
-    	try:
-        	while True:
-            	dist = distance()
-            	print ("Measured Distance = %.1f cm" % dist)
-            	time.sleep(1)
- 
+if __name__ == '__main__':
+    try:
+        while True:
+            dist = distance()
+        	print ("Measured Distance = %.1f cm" % dist)
+        	time.sleep(1)
         	# Reset by pressing CTRL + C
-    	except KeyboardInterrupt:
-        	print("Measurement stopped by User")
-        	GPIO.cleanup()
+	except KeyboardInterrupt:
+    	print("Measurement stopped by User")
+    	GPIO.cleanup()
 
 # USAGE
 # python detect_realtime_tinyyolo_ncs.py --conf config/config.json \
