@@ -1,3 +1,7 @@
+#Copyright Arnab Chakraborty 2020
+#For Glasses For Blind Project
+#Do not use these files for anything else
+
 from subprocess import check_call, CalledProcessError
 import os
 
