@@ -4,3 +4,7 @@ This code works with prototype editions of Glasses which Would help people see. 
 
 # Hardware Requirements
 1. Intel Neural Compute Stick 2 With Myraid X VPU
+2. Ultrasonic Sensor
+3. Raspberry Pi Camera
+
+# Look at Project to see next steps.
