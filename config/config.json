@@ -9,9 +9,9 @@
 	"labels_path": "yolo/coco.names",
 
 	// probability threshold for detections filtering
-	"prob_threshold": 0.5,
+	"prob_threshold": 0.7,
 
 	// intersection over union threshold for filtering overlapping
 	// detections
-	"iou_threshold": 0.15
+	"iou_threshold": 0.20
 }
