@@ -181,3 +181,4 @@ def Detect():
 	cv2.destroyAllWindows()
 	
 
+Detect()
