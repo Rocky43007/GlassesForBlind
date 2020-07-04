@@ -37,6 +37,22 @@ name1 = input("Do you want to test? y/n: ")
 
 if name1 == 'y':
     try:
+        import pickle
+
+        age = input ('Age?: ')
+        gender = input ('Gender?: ')
+        agefile = age
+        genderfile = gender
+
+        pickle_out = open("age.native","wb")
+        pickle.dump(agefile, pickle_out)
+        pickle_out.close()
+
+
+        pickle_out = open("gender.native","wb") 
+        pickle.dump(genderfile, pickle_out)
+        pickle_out.close()
+        
         os.system("python GFBDetectV2.py --conf config/config.json")
     except KeyboardInterrupt:
         os.system("pkill -f GFBDetectV2")

@@ -11,7 +11,7 @@ import os
 GPIO.setmode(GPIO.BCM)
  
 #set GPIO Pins
-GPIO_TRIGGER = 18
+GPIO_TRIGGER = 23
 GPIO_ECHO = 24
  
 #set GPIO direction (IN / OUT)
@@ -50,14 +50,14 @@ if __name__ == '__main__':
             measure = "Measured Distance = %.1f cm" % dist
             print (measure)
                 
-            language = 'en'
+#            language = 'en'
 
-            output = gTTS(text=measure, lang='en', slow=False)
+#            output = gTTS(text=measure, lang='en', slow=False)
 
-            output.save('output2.mp3')
-            
-            os.system('mpg123 output2.mp3')
-            time.sleep (10)
+#            output.save('output2.mp3')
+#            
+#            os.system('mpg123 output2.mp3')
+#            time.sleep (10)
             
 
     # Reset by pressing CTRL + C
