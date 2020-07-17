@@ -1,58 +1,52 @@
-#import pip
-#import __Installer__.py
-import GFBDistance as d
-import GFBDetection as d2
 import time
 import os
 import sys
+import speech_recognition as sr
+from gtts import gTTS
+import pyaudio
+import pickle
+import datefinder
 
-def pipinstall():
-    try:
-        check_call(['sudo','apt-get', 'install', '-y', 'python3-pip'], stdout=open(os.devnull,'wb'))
-    except CalledProcessError as e:
-        print(e.output)
+r = sr.Recognizer()
 
-def TesseractInstall():
-    try:
-        check_call(['sudo','apt-get', 'install', '-y', 'tesseract-ocr'], stdout=open(os.devnull,'wb'))
-    except CalledProcessError as e:
-        print(e.output)
+if os.path.isfile('birthday.native') == True:
+    os.system("python GFBDetect.py --conf config/config.json")
 
-def install(package):
-    if hasattr(pip, 'main'):
-        pip.main(['install', package])
-    else:
-        pip._internal.main(['install', package])
+if os.path.isfile('birthday.native') == False:
+    def talkToMe(audio):
+        print(audio)
+        tts = gTTS(text=audio, lang='en')
+        tts.save('audio.mp3')
+        os.system('mpg123 audio.mp3')
 
-# Example
-if __name__ == '__main__': 
-    pipinstall()
-    TesseractInstall()
-    install('numpy')
+    def myCommand():
+        Welcome = 'Welcome! Please say your date of birth.'
+        talkToMe(Welcome)
 
-p1 = m.Process(target=d.distance)
-p2 = m.Process(target=d2.Detect)
+        with sr.Microphone() as source:
+            print('Ready')
+            r.pause_threshold = 1
+            r.adjust_for_ambient_noise(source, duration=1)
+            audio = r.listen(source)
+            command = r.recognize_google(audio)
+            print("Your birthday is on the " + command)
+            matches = datefinder.find_dates(command)
 
-name1 = input("Do you want to test? y/n: ")
+            for match in matches:
+                print (match)
 
-if name1 == 'y':
-    try:
-        import pickle
-
-        age = input ('Age?: ')
-        gender = input ('Gender?: ')
-        agefile = age
-        genderfile = gender
-
-        pickle_out = open("age.native","wb")
-        pickle.dump(agefile, pickle_out)
+        pickle_out = open("birthday.native","wb")
+        pickle.dump(str(match), pickle_out)
         pickle_out.close()
 
-
-        pickle_out = open("gender.native","wb") 
-        pickle.dump(genderfile, pickle_out)
-        pickle_out.close()
         
-        os.system("python GFBDetectV2.py --conf config/config.json")
-    except KeyboardInterrupt:
-        os.system("pkill -f GFBDetectV2")
+        try:
+            pass
+        except sr.UnknownValueError:
+            talkToMe('Sorry, I did not understand. Please repeat.')
+            myCommand()
+        return command
+    
+    myCommand()
+    os.system('python GFBDetect.py --conf config/config.json')
+

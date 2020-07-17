@@ -23,6 +23,8 @@ import subprocess
 from gtts import gTTS
 import GFBDistance
 import RPi.GPIO as GPIO
+from datetime import date
+import pickle
 
 #set GPIO Mode
 GPIO.setmode(GPIO.BCM)
@@ -34,6 +36,40 @@ GPIO_ECHO = 24
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
+
+with open('birthday.native', 'rb') as f:
+    x = pickle.load(f)
+    a = x.strip("00:00:00")
+    d = a.split("-")
+
+print ("Original list is : " + str(d)) 
+
+for i in range(0, len(d)): 
+    d[i] = int(d[i]) 
+
+  
+print ("Modified list is : " + str(d)) 
+year, month, day = d
+print (year, month, day)
+def calculateAge(born): 
+    today = date.today() 
+    try:  
+        birthday = born.replace(year = today.year) 
+  
+    # raised when birth date is February 29 
+    # and the current year is not a leap year 
+    except ValueError:  
+        birthday = born.replace(year = today.year, 
+                  month = born.month + 1, day = 1) 
+  
+    if birthday > today: 
+        return today.year - born.year - 1
+    else: 
+        return today.year - born.year 
+          
+# Driver code 
+age = calculateAge(date(year, month, day))
+print (age)
 
 def Detect():
     # construct the argument parser and parse the arguments
@@ -194,30 +230,54 @@ def Detect():
 
             dist = distance()
             meter = dist / 100.0;
-            measure = "and the measured distance is %.1f cm" % meter
+            measure = " and the measured distance is %.1f m" % meter
             print (measure)
-
-            #Find normalised step distance, and add maths
-            import pickle
-
-            age_in = open("age.native","rb")
-            gender_in = open("gender.native","rb")
-            age = pickle.load(age_in)
-            gender = pickle.load(gender_in)
-
-            if '20' <= age <= '29':
+            
+            #Maths required to find age.
+            if age in range(20,29):
                 print ('Steps = 1.35 m/s')
                 steps = meter/1.35
                 print (steps)
-            else:
-                print ('Over 20-29')
             
+            elif age in range(30,39):
+                print ('Steps = 1.385 m/s')
+                steps = meter/1.385
+                print (steps)
+            
+            elif age in range(40,49):
+                print ('Steps = 1.41 m/s')
+                steps = meter/1.41
+                print (steps)
+
+            elif age in range(50,59):
+                print ('Steps = 1.37 m/s')
+                steps = meter/1.37
+                print (steps)
+
+            elif age in range(60,69):
+                print ('Steps = 1.29 m/s')
+                steps = meter/1.29
+                print (steps)
+
+            elif age in range(70,79):
+                print ('Steps = 1.195 m/s')
+                steps = meter/1.195
+                print (steps)
+
+            elif age in range(80,89):
+                print ('Steps = 0.96m/s')
+                steps = meter/0.96
+                print (steps)
+                
+            stepstxt = " and the object is %s steps away." %steps
+            print (stepstxt)
+
             language = 'en'
-
-            output = gTTS(text=label+measure, lang='en', slow=False)
-
+            print (label + stepstxt)
+            output = gTTS(text=label+stepstxt, lang='en', slow=False)
+ 
             output.save('output.mp3')
-
+ 
             os.system('mpg123 output.mp3')
 
     
@@ -253,6 +313,8 @@ def Detect():
     # stop the video stream and close any open windows1
     vs.stop() if args["input"] is None else vs.release()
     cv2.destroyAllWindows()
-    
 
 Detect()
+
+
+
