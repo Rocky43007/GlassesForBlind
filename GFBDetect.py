@@ -204,6 +204,7 @@ def Detect():
             print (label)
             
             def distance():
+                age = calculateAge(date(year, month, day))
                 # set Trigger to HIGH
                 GPIO.output(GPIO_TRIGGER, True)
 
@@ -236,39 +237,39 @@ def Detect():
             #Maths required to find age.
             if age in range(20,29):
                 print ('Steps = 1.35 m/s')
-                steps = meter/1.35
+                steps = round(meter/1.35)
                 print (steps)
             
             elif age in range(30,39):
                 print ('Steps = 1.385 m/s')
-                steps = meter/1.385
+                steps = round(meter/1.385)
                 print (steps)
             
             elif age in range(40,49):
                 print ('Steps = 1.41 m/s')
-                steps = meter/1.41
+                steps = round(meter/1.41)
                 print (steps)
 
             elif age in range(50,59):
                 print ('Steps = 1.37 m/s')
-                steps = meter/1.37
+                steps = round(meter/1.37)
                 print (steps)
 
             elif age in range(60,69):
                 print ('Steps = 1.29 m/s')
-                steps = meter/1.29
+                steps = round(meter/1.29)
                 print (steps)
 
             elif age in range(70,79):
                 print ('Steps = 1.195 m/s')
-                steps = meter/1.195
+                steps = round(meter/1.195)
                 print (steps)
 
             elif age in range(80,89):
                 print ('Steps = 0.96m/s')
-                steps = meter/0.96
+                steps = round(meter/0.96)
                 print (steps)
-                
+            
             stepstxt = " and the object is %s steps away." %steps
             print (stepstxt)
 
