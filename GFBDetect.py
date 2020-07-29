@@ -40,6 +40,8 @@ import RPi.GPIO as GPIO
 from datetime import date
 # Required to get data saved in text from 'Birthday.native'.
 import pickle
+# Used to allow caching to make the code run faster.
+import functools
 
 # Requirements to get the Ultrasonic sensor working. Basically just says 'Ok, you'll get information
 # From this pin and this pin on the raspberry pi'.
@@ -69,6 +71,8 @@ for i in range(0, len(d)):
 print ("Modified list is : " + str(d)) 
 year, month, day = d
 print (year, month, day)
+
+@functools.lru_cache(maxsize=128)
 def calculateAge(born): 
     today = date.today() 
     try:  
@@ -90,6 +94,7 @@ age = calculateAge(date(year, month, day))
 print (age)
 
 # Main detection code.
+@functools.lru_cache(maxsize=128)
 def Detect():
     # construct the argument parser and parse the arguments 
     # Basically the code forces the code to use a specific requirement for it to work. 
@@ -230,6 +235,7 @@ def Detect():
             print (label)
             
             # This part of code helps us find the number of steps from the user to the object.
+            @functools.lru_cache(maxsize=128)
             def distance():
                 # Using the age of the user and the Ultrasonic sensor, we can find the steps required.
                 age = calculateAge(date(year, month, day))
@@ -266,7 +272,7 @@ def Detect():
             measure = " and the measured distance is %.1f m" % meter
             print (measure)
             
-            #Maths required to find age.
+            # Maths required to find age.
             # This is a bunch of if statements checking what the age is, and then 
             # giving the corresponding pace of the user.
             # Checks if the age is in which range.
