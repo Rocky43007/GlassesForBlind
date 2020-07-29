@@ -243,7 +243,7 @@ def Detect():
                 GPIO.output(GPIO_TRIGGER, True)
 
                 # set Trigger after 0.01ms to LOW
-                time.sleep(10)
+                time.sleep(0.0001)
                 GPIO.output(GPIO_TRIGGER, False)
                 StartTime = time.time()
                 StopTime = time.time()
