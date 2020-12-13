@@ -1,5 +1,5 @@
-#By Adrian at PyImageSearch and Arnab Chakraborty
-#Copyright Arnab Chakraborty 2020
+#By Adrian at PyImageSearch and Rocky43007
+#Copyright Rocky43007 2020
 
 # USAGE
 # python GFBDetect.py --conf config/config.json
